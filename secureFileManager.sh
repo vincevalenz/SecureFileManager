@@ -1,10 +1,15 @@
 #!/bin/bash
 ###############################################################
 #	                                                      |
-#                   Secure File Manager                       |
-#	        Simple script to help manage                  |
-#                  and encrypt txt files                      |
-#                       using gpg                             |
+#           Course: CSIS80 - Intro to UNIX/Linux              |
+#	                                                      |
+#       Assignment: Final Project                             |
+#	                                                      |
+#       Instructor: Turner, B.                                |
+#	                                                      |
+#             Name: Vincent Valenzuela                        |
+#                                                             |
+#             Date: 05/16/2018                                |
 #                                                             |
 ###############################################################
 	
@@ -26,23 +31,30 @@ createDir() {
 createFile(){
        ## User creates filename that will be encrypted
 	#
-	echo "Enter a filename:"
+	echo "Enter a filename"
 	read temp
+       ## If entry is null, return to main menu
+	#
+ 	if [ -z $temp ]; then
+		echo -e "\nEntry was null, Returning to main menu"
+		sleep 2
+		intro
+	fi	
        ## If filename has a space, replpace it with an underscore
 	#
 	file=$(echo $temp | tr ' ' '_')
        ## Ask user to input a phrase twice
 	#
 	while [ -z "$data" ]; do 
-		echo "Enter a string:"
+		echo "Enter a string"
 		read data
 	done
-	echo "Repeat the string:"
+	echo "Repeat the string"
 	read repeatData
        ## Check both entries match
 	#
 	while [ $data != $repeatData ]; do 
-		echo "Strings did not match. Enter again:"
+		echo "Strings did not match. Enter again"
 		read repeatData
 	done
        ## Create file with filename and push the data to the file, then move to right dir
@@ -52,7 +64,7 @@ createFile(){
        ## Have user enter a master password to secure the file
 	#
 	clear
-	echo -e "Enter a Master Password to secure:\n"
+	echo -e "Enter a Master Password to secure\n"
 	gpg -c ~/Documents/SFS-GPG/"$file.txt"
 	rm ~/Documents/SFS-GPG/"$file.txt"
 	echo "Done!"
@@ -68,8 +80,10 @@ viewFile(){
 	ls ~/Documents/SFS-GPG
        ## Make sure the user makes a valid coice
         #
+	echo -e "\nChoose a file"
+	read file
         while [ ! -e ~/Documents/SFS-GPG/$file* ]; do	
-		echo -e "\nChoose a file:"
+		echo -e "\nPlease choose an existing file"
 		read file
 	done
        
@@ -95,8 +109,10 @@ removeFile(){
 	ls ~/Documents/SFS-GPG/
        ## Make sure it is a valid filename
         #
+	echo -e "\nEnter a filename"
+	read file
 	while [ ! -e ~/Documents/SFS-GPG/$file* ]; do
-		echo "Enter a filename"
+		echo -e "\nPlease choose an existing file"
 		read file
 	done
        ## Ensure choice isnt null or else all files will be removed
@@ -117,7 +133,7 @@ intro(){
 	#
 	clear
 	echo "##########################################################################
-#                       Secure File Manager                              #
+#                       Secure File Storage                              #
 #                                                                        #
 #                     Create a unique filename                           #
 #                       Add some information                             # 
