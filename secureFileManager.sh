@@ -1,16 +1,10 @@
 #!/bin/bash
 ###############################################################
 #	                                                      |
-#           Course: CSIS80 - Intro to UNIX/Linux              |
-#	                                                      |
-#       Assignment: Final Project                             |
-#	                                                      |
-#       Instructor: Turner, B.                                |
-#	                                                      |
-#             Name: Vincent Valenzuela                        |
 #                                                             |
-#             Date: 05/16/2018                                |
+#	          Secure File Manager                         |
 #                                                             |
+#	                                                      |
 ###############################################################
 	
        ## If gpg is not installed, exit and let user know it is required
