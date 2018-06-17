@@ -60,7 +60,7 @@ createFile(){
 	clear
 	echo -e "Enter a Master Password to secure\n"
 	gpg -c ~/Documents/SFS-GPG/"$file.txt"
-	rm ~/Documents/SFS-GPG/"$file.txt"
+	shred ~/Documents/SFS-GPG/"$file.txt"
 	echo "Done!"
 	sleep 2
        ## Clear gpg-agent cache and run the intro() again when finished
